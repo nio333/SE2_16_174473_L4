@@ -1,4 +1,31 @@
 /**
+*   Funzione di toggle della from degli employee 
+*   fra visibile e non.
+*/
+function shForm(){
+	var div = document.getElementById("employee");
+	if (div.classList.contains('hidden')) {
+        div.classList.toggle('visible');
+        resetForm();
+    } else {
+        div.classList.toggle('hidden');
+    }
+}
+
+/**
+*   Funzione di reset dei campi della form
+**/
+
+function resetForm(){
+    document.getElementById("ids").value="";
+	document.getElementById("id").value="";
+	document.getElementById("name").value="";
+	document.getElementById("surname").value="";
+	document.getElementById("level").value="";
+	document.getElementById("salary").value="";
+}
+
+/**
 *   Se il campo ids non è vuoto settto action per segnalare al server che
 *   sto effettuando una ricerca, altriementi lancio un messaggio d'errore
 *   
@@ -7,7 +34,7 @@
 
 function searchEmp(form){
 	if(document.getElementById("ids").value!=""){
-        form.action="/search";
+        form.action = "/search";
         form.submit();
     }
     else{
@@ -22,8 +49,8 @@ function searchEmp(form){
 *	@param form
 **/
 function deleteEmp(form){
-    if(document.getElementById("ids").value!=""){
-        form.action="/delete";
+    if(document.getElementById("ids").value != ""){
+        form.action = "/delete";
         form.submit();
     }
     else{
@@ -35,7 +62,7 @@ function deleteEmp(form){
 *   Elimino valore eventualmente presente nel campo ids
 **/
 function reset(){
-	document.getElementById("ids").value="";
+	document.getElementById("ids").value = "";
 }
 
 /**
@@ -52,7 +79,7 @@ function addEmp(form){
 	var level = document.getElementById("level").value;
 	var salary = document.getElementById("salary").value;
     
-	if(id!= "" && name!="" && surname!="" && level!="" && salary!=""){
+	if(id != "" && name != "" && surname != "" && level != "" && salary != ""){
         form.action="/insert";
 		document.getElementById("employee").disabled=true;
 		form.submit();

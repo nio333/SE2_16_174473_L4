@@ -4,6 +4,7 @@
 		<title>ESM: Employee System Manager</title>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="files/js/funct.js"></script>
+        <link rel="stylesheet" href="files/css/style.css">
 	</head>
 	<body>
 		<h3 class="center">ESM: Employee System Manager</h3>
@@ -18,9 +19,14 @@
                 <input type="button" onclick="deleteEmp(this.form)" value="Delete">
                 <input type="button" onclick="reset()" value="Reset">
             </div>
+            <br>
+            <div>
+                <input type="button" onclick="shForm()" value="Show/Hide">
+            </div>
+            <br>
         </form>
         <form id = "form" method="POST">
-			<div id="employee">
+			<div id="employee" (:if[open] ~ [:then ~ class="visible":][:else ~ class="hidden":]:)>
 				<br>
 				<label> Employee ID: </label><br>
 				<input type="number" id="id" name="id" value="(:id:)"><br>

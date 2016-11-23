@@ -24,14 +24,7 @@ app.get('/', function(req, res) {
 	//bind to template
 	bind.toFile('tpl/index.tpl', {
         //set up parameters
-		visibile : false,
-		ids: '',
-        id: '',
-        name: '',
-		surname: '',
-		level: '',
-		salary: ''
-
+		open : false
     }, 
     function(data){
         res.writeHead(200, {'Content-Type': 'text/html'});
@@ -49,8 +42,7 @@ app.post('/search', function(req, res) {
             var employee = lib.getEmployee(getId);
             if(employee == null){
                 bind.toFile('tpl/index.tpl', {
-                    //set up parameters
-                    visibile : true
+                    open : true
                 }, 
                 function(data){
                     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -60,8 +52,7 @@ app.post('/search', function(req, res) {
             else{
                 //bind to template
                 bind.toFile('tpl/index.tpl', {
-                    //set up parameters
-                    visibile : true,
+                    open : true,
                     ids: employee.id,
                     id: employee.id,
                     name: employee.name,
@@ -82,7 +73,6 @@ app.post('/search', function(req, res) {
 *   DELETE EMPLOYEE
 **/
 app.post('/delete', function(req, res) {
-    console.log("Remove emp lato server");
 	if ( typeof req.body !== 'undefined' && req.body){
         //the ontent of the POST receiced
 		// salvo il contenuto del campo id
@@ -94,7 +84,7 @@ app.post('/delete', function(req, res) {
 	//bind to template
 	bind.toFile('tpl/index.tpl', {
         //set up parameters
-		visibile : false,
+		open : false,
 		ids: '',
         id: '',
         name: '',
@@ -151,7 +141,7 @@ app.post('/insert',function(request,response){
 			lib.addEmployee(employee);		//Aggiunta dell'employee alla lista
 			bind.toFile('tpl/index.tpl', {
                 //set up parameters
-                visibile : false
+                open : false
             },
             function(data){
                 response.writeHead(200,{'Content-Type':'text/html'});

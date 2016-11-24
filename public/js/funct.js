@@ -73,15 +73,13 @@ function reset(){
 *   @param form
 */
 function addEmp(form){
-    var id = document.getElementById("id").value;
     var name = document.getElementById("name").value;
 	var surname = document.getElementById("surname").value;
 	var level = document.getElementById("level").value;
 	var salary = document.getElementById("salary").value;
     
-	if(id != "" && name != "" && surname != "" && level != "" && salary != ""){
+	if(name != "" && surname != "" && level != "" && salary != ""){
         form.action="/insert";
-		document.getElementById("employee").disabled=true;
 		form.submit();
 	}else{
 		alert("Error data!");

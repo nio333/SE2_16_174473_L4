@@ -109,9 +109,15 @@ app.post('/insert',function(request,response){
 		var error = false;
         
         if(typeof request.body.id !== 'undefined' && request.body.id){
-			employee.id=parseInt(request.body.id);
-		}else{
-			error = true;
+            var id = request.body.id;
+            //se id è stato lasciato in bianco
+			if(id==""){
+				employee.id=lib.getNextId();
+			}else{//altrimenti prelevo il dato inserito
+				employee.id=parseInt(id);
+			}
+		}else{//alcuni brosware non inviano il dato se il campo è vuoto
+			employee.id=lib.getNextId();
 		}
 		if(typeof request.body.name !== 'undefined' && request.body.name){
 			employee.name=request.body.name;
@@ -140,7 +146,6 @@ app.post('/insert',function(request,response){
 		}else{
 			lib.addEmployee(employee);		//Aggiunta dell'employee alla lista
 			bind.toFile('tpl/index.tpl', {
-                //set up parameters
                 open : false
             },
             function(data){
